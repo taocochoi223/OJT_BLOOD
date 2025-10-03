@@ -1,65 +1,42 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AuthProvider } from "@/contexts/AuthContext";
+  import { Toaster } from "@/components/ui/toaster";
+  import { Toaster as Sonner } from "@/components/ui/sonner";
+  import { TooltipProvider } from "@/components/ui/tooltip";
+  import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+  import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+  import { SidebarProvider } from "@/components/ui/sidebar";
+  import { AuthProvider } from "@/contexts/AuthContext";
+  import RouterCustom from "./routes/RouterCustom";
 
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import DashboardLayout from "./components/layout/DashboardLayout";
-import Dashboard from "./pages/DashboardUI/Dashboard";
-import PatientManagement from "./pages/PatientManagement";
-import TestManagement from "./pages/TestManagement";
-import ResultsManagement from "./pages/ResultsManagement";
-import Reports from "./pages/Reports";
-import StaffManagement from "./pages/StaffManagement";
-import Settings from "./pages/Settings";
-import Profile from "./pages/Profile";
-import PATHS from "./routes/paths";
-import HomePage from "./pages/HomePage";
+  import PATHS from "./routes/paths";
+  import HomePage from "./pages/HomePage";
+  import Login from "./pages/Auth/Login";
+  import Register from "./pages/Auth/Register";
+  import Unauthorized from "./pages/Auth/Unauthorized";
+  const queryClient = new QueryClient();
 
-const queryClient = new QueryClient();
+  const App = () => (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Routes có Header + Footer */}
+              <Route element={<RouterCustom showHeader={false} showFooter={true} />}>
+                <Route path={PATHS.HOME} element={<HomePage />} />
+              </Route>
+              <Route>
+                <Route path={PATHS.AUTH.LOGIN} element={<Login />} />
+                <Route path={PATHS.AUTH.REGISTER} element={<Register />} />
+                <Route path={PATHS.AUTH.UNAUTHORIZED} element={<Unauthorized />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider >
+  );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Homepage */}
-            <Route path={PATHS.HOME} element={<HomePage />} />
-
-            {/* Auth */}
-            <Route path={PATHS.LOGIN} element={<Login />} />
-            <Route path={PATHS.REGISTER} element={<Register />} />
-
-
-            {/* Dashboard Pages (independent) */}
-            <Route path={PATHS.DASHBOARD} element={<SidebarProvider> <DashboardLayout /> </SidebarProvider>} >
-              <Route index element={<Dashboard />} />
-
-              <Route path="patients" element={<PatientManagement />} />
-              <Route path="tests" element={<TestManagement />} />
-              <Route path="results" element={<ResultsManagement />} />
-              <Route path="reports" element={<Reports />} />
-              <Route path="staff" element={<StaffManagement />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="profile" element={<Profile />} />
-            </Route>
-
-
-
-          </Routes>
-
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider >
-);
-
-export default App;
+  export default App;

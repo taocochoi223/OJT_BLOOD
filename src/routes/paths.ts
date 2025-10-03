@@ -1,15 +1,38 @@
 const PATHS = {
-    // Public
-    HOME: "/",
-    LOGIN: "/login",
-    REGISTER: "/register",
+  // Public
+  HOME: "/",
 
-    // Dashboards
-    DASHBOARD: "/dashboard",
+  AUTH: {
+  LOGIN: "/login",
+  REGISTER: "/register",
+  UNAUTHORIZED: "/unauthorized",
+  },
 
-    // Errors
-    NOT_FOUND: "*",
-    UNAUTHORIZED: "/unauthorized",
+  // Patient
+  PATIENTS: {
+    PROFILE: "/patients/profile",
+    APPOINTMENTS: "/patients/appointments",
+    HISTORY: "/patients/history",
+    PRESCRIPTIONS: "/patients/prescriptions",
+    NOTIFICATIONS: "/patients/notifications",
+    CONTACT: "/patients/contact",
+  },
+
+
+  DOCTORS:{
+    HOME: "/doctor",
+    APPOINTMENTS: "/doctor/appointments",
+    PATIENTS: "/doctor/patients",
+  },
+
+
+  ADMINS:{
+    HOME: "/admin",
+    USERS: "/admin/users",
+    DOCTORS: "/admin/doctors",
+  },
+  // Errors
+  NOT_FOUND: "*",
 };
 
 export default PATHS;
