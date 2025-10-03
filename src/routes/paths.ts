@@ -10,6 +10,7 @@ const PATHS = {
 
   // Patient
   PATIENTS: {
+    HOME: "/patients/PatientHome",
     PROFILE: "/patients/profile",
     APPOINTMENTS: "/patients/appointments",
     HISTORY: "/patients/history",

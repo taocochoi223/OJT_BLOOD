@@ -1,7 +1,7 @@
 // AuthLayout.tsx
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/images/logo.png";
 interface Props {
   children: ReactNode;
   backTo: string; // đường dẫn muốn quay lại
@@ -14,7 +14,7 @@ export default function AuthLayout({ children, backTo }: Props) {
         {/* Intro bên trái */}
         <div className="hidden md:flex flex-col justify-center w-2/5 bg-gradient-to-br from-blue-500 to-blue-700 text-white p-10">
           <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white/20 mb-6">
-            <img src="/logo.png" alt="Logo" className="w-12 h-12" />
+            <img src={logo} alt="Logo" className="rounded-3xl" />
           </div>
           <h2 className="text-2xl font-bold mb-4">
             Chào mừng đến với ClinicSystem

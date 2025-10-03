@@ -5,14 +5,19 @@
   import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
   import { SidebarProvider } from "@/components/ui/sidebar";
   import { AuthProvider } from "@/contexts/AuthContext";
-  import RouterCustom from "./routes/RouterCustom";
+
 
 
   import PATHS from "./routes/paths";
   import HomePage from "./pages/HomePage";
-  import Login from "./pages/Auth/Login";
-  import Register from "./pages/Auth/Register";
-  import Unauthorized from "./pages/Auth/Unauthorized";
+  import Login from "./pages/auth/Login";
+  import Register from "./pages/auth/Register";
+  import Unauthorized from "./pages/auth/Unauthorized";
+  import PatientHome from "./pages/patients/PatientHome";
+  import Profile from "./pages/patients/Profile";
+
+
+
   const queryClient = new QueryClient();
 
   const App = () => (
@@ -23,15 +28,12 @@
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Routes có Header + Footer */}
-              <Route element={<RouterCustom showHeader={false} showFooter={true} />}>
                 <Route path={PATHS.HOME} element={<HomePage />} />
-              </Route>
-              <Route>
                 <Route path={PATHS.AUTH.LOGIN} element={<Login />} />
                 <Route path={PATHS.AUTH.REGISTER} element={<Register />} />
                 <Route path={PATHS.AUTH.UNAUTHORIZED} element={<Unauthorized />} />
-              </Route>
+                <Route path={PATHS.PATIENTS.HOME} element={<PatientHome />} />
+                <Route path={PATHS.PATIENTS.PROFILE} element={<Profile />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>

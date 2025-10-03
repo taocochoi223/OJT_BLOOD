@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PATHS from "@/routes/paths";
 
-import bannerImg from "@/assets/images/banner.jpg";
+import bannerImg from "@/assets/images/Medical Dashboard.png";
 import doctorImg from "@/assets/images/Doctor Consultation.jpg";
 import bloodImg from "@/assets/images/Blood Test.jpg";
 import logo from "@/assets/images/logo.png";
+import savetimeImg from "@/assets/images/Save Time.jpg";
+import Footer from "@/components/layout/PatientFooter";
 
-// Danh sách ảnh cho slider
+// Slider images
 const images = [
   {
     src: bannerImg,
@@ -29,16 +31,15 @@ const images = [
   },
 ];
 
-// Colors cho dots
 const dotColors = ["bg-indigo-600", "bg-rose-500", "bg-amber-500"];
 
-function HomePage() {
+export default function HomePage() {
   const [imgIdx, setImgIdx] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(
       () => setImgIdx((p) => (p + 1) % images.length),
-      3500
+      2500
     );
     return () => clearInterval(interval);
   }, []);
@@ -47,7 +48,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50">
-      {/* Navbar */}
+      {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/40 border-b border-white/40">
         <div className="max-w-7xl mx-auto w-full px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -77,22 +78,17 @@ function HomePage() {
         </div>
       </header>
 
-      {/* Hero */}
+      {/* Hero Slider */}
       <section className="relative overflow-hidden">
-        {/* Decorative blobs */}
-        <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-indigo-300/30 blur-3xl animate-pulse" />
-        <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-rose-300/30 blur-3xl animate-pulse" />
-
         <div className="max-w-7xl mx-auto w-full px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-indigo-600 via-rose-500 to-amber-500 bg-clip-text text-transparent">
               Hệ thống Quản lý Phòng Xét nghiệm Máu
             </h1>
             <p className="text-lg text-slate-600 max-w-xl">
-              Nền tảng y tế thông minh giúp bạn theo dõi kết quả xét nghiệm, quản
-              lý lịch hẹn và đơn thuốc nhanh chóng, chính xác và an toàn.
+              Nền tảng y tế thông minh giúp bạn theo dõi kết quả xét nghiệm, quản lý lịch hẹn
+              và đơn thuốc nhanh chóng, chính xác và an toàn.
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Link
                 to={PATHS.AUTH.LOGIN}
@@ -107,32 +103,6 @@ function HomePage() {
                 Tìm hiểu thêm
               </a>
             </div>
-
-            {/* Highlights */}
-            <div className="mt-6 flex gap-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-300 text-white rounded-lg shadow flex items-center justify-center">
-                  📅
-                </div>
-                <div>
-                  <div className="text-sm font-medium">Đặt lịch nhanh</div>
-                  <div className="text-sm text-slate-600">
-                    Chọn thời gian phù hợp cho bạn
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-300 text-white rounded-lg shadow flex items-center justify-center">
-                  🧪
-                </div>
-                <div>
-                  <div className="text-sm font-medium">Kết quả trực tuyến</div>
-                  <div className="text-sm text-slate-600">
-                    Xem & tải kết quả nhanh chóng
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Hero Image */}
@@ -146,7 +116,6 @@ function HomePage() {
                 className="w-full h-full object-cover animate-float"
               />
             </div>
-
             {/* Dots */}
             <div className="absolute left-1/2 transform -translate-x-1/2 bottom-3 flex gap-3">
               {images.map((_, i) => (
@@ -215,6 +184,95 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Features */}
+      <section id="features" className="max-w-7xl mx-auto w-full px-6 py-12 space-y-12">
+        <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
+          Thông tin về xét nghiệm máu
+        </h2>
+
+        {/* 1. Xét nghiệm máu là gì */}
+        <div className="grid md:grid-cols-2 gap-6 items-center">
+          <img src={bloodImg} alt="Xét nghiệm máu" className="rounded-xl shadow-lg" />
+          <div>
+            <h3 className="text-xl font-semibold text-indigo-600 mb-2">
+              Xét nghiệm máu là gì?
+            </h3>
+            <p className="text-slate-700">
+              Xét nghiệm máu là phương pháp y học giúp phân tích các thành phần trong máu nhằm đánh
+              giá tình trạng sức khỏe, phát hiện bệnh lý và theo dõi hiệu quả điều trị.
+            </p>
+          </div>
+        </div>
+
+        {/* 2. Tầm quan trọng */}
+        <div className="bg-indigo-50 p-6 rounded-xl shadow-lg">
+          <h3 className="text-xl font-semibold text-indigo-600 mb-2">
+            Tầm quan trọng của xét nghiệm máu
+          </h3>
+          <ul className="list-disc list-inside text-slate-700 space-y-1">
+            <li>Phát hiện sớm các bệnh lý tiềm ẩn.</li>
+            <li>Đánh giá chức năng cơ quan như gan, thận, tim mạch.</li>
+            <li>Giúp bác sĩ đưa ra phương án điều trị chính xác.</li>
+          </ul>
+        </div>
+
+        {/* 3. Tại sao phải xét nghiệm */}
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+          {/* Text */}
+          <div className="md:w-1/2 lg:w-5/12">
+            <h3 className="text-xl font-semibold text-rose-600 mb-2">
+              Tại sao phải xét nghiệm máu?
+            </h3>
+            <p className="text-slate-700">
+              Xét nghiệm máu giúp bạn nắm bắt sức khỏe tổng quát, phát hiện các nguy cơ trước khi bệnh biểu hiện rõ ràng, từ đó giảm thiểu rủi ro và chi phí điều trị.
+            </p>
+          </div>
+
+          {/* Image */}
+          <div className="md:w-1/2 lg:w-6/12 flex justify-end">
+            <img
+              src={doctorImg}
+              alt="Doctor Consultation"
+              className="rounded-xl shadow-lg w-full max-w-[100%] object-cover"
+            />
+          </div>
+        </div>
+
+
+        {/* 4. Ai nên đi xét nghiệm */}
+        <div className="bg-rose-50 p-6 rounded-xl shadow-lg">
+          <h3 className="text-xl font-semibold text-rose-600 mb-2">
+            Ai nên đi xét nghiệm máu?
+          </h3>
+          <ul className="list-disc list-inside text-slate-700 space-y-1">
+            <li>Người trên 35 tuổi hoặc có bệnh lý nền.</li>
+            <li>Người có triệu chứng mệt mỏi, chóng mặt, khó thở.</li>
+            <li>Người theo dõi điều trị dài hạn.</li>
+            <li>Người muốn kiểm tra sức khỏe định kỳ.</li>
+          </ul>
+        </div>
+
+        {/* 5. Giải pháp giảm thời gian */}
+        <div className="grid md:grid-cols-2 gap-6 items-center">
+          <img src={savetimeImg} alt="Giải pháp xét nghiệm" className="rounded-xl shadow-lg  max-w-[100%]" />
+          <div>
+            <h3 className="text-xl font-semibold text-amber-600 mb-2">
+              Giải pháp giảm thời gian xét nghiệm
+            </h3>
+            <p className="text-slate-700">
+              Hệ thống quản lý phòng xét nghiệm thông minh giúp bạn đặt lịch trực tuyến, giảm thời gian
+              chờ đợi, nhận kết quả nhanh chóng và tiện lợi.
+            </p>
+            <Link
+              to={PATHS.AUTH.REGISTER}
+              className="inline-block mt-4 px-6 py-3 bg-amber-500 text-white rounded-lg shadow hover:bg-amber-600 transition"
+            >
+              Tạo tài khoản ngay
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="max-w-7xl mx-auto w-full px-6 py-12">
         <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">
@@ -271,14 +329,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="mt-auto bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-100 py-8">
-        <div className="max-w-7xl mx-auto px-6 text-center text-sm text-slate-700">
-          © {new Date().getFullYear()} Phòng Xét nghiệm Máu — Bản quyền bảo lưu.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
-
-export default HomePage;

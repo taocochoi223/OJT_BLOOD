@@ -33,7 +33,7 @@ export default function Header() {
     if (!username) {
       e.preventDefault();
       alert("Bạn cần đăng nhập để truy cập mục này!");
-      navigate(PATHS.LOGIN);
+      navigate(PATHS.AUTH.LOGIN);
     }
   };
 
@@ -46,18 +46,98 @@ export default function Header() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex gap-6">
-        <NavLink to={PATHS.HOME} className={({ isActive }) => isActive ? "text-blue-600 font-semibold border-b-2 border-blue-600" : "hover:text-blue-600"}>
-          Trang chủ
-        </NavLink>
-        <NavLink to={PATHS.PATIENTS.PROFILE} onClick={handleProtectedNav}>Hồ sơ cá nhân</NavLink>
-        <NavLink to={PATHS.PATIENTS.APPOINTMENTS} onClick={handleProtectedNav}>Lịch hẹn</NavLink>
-        <NavLink to={PATHS.PATIENTS.HISTORY} onClick={handleProtectedNav}>Lịch sử khám</NavLink>
-        <NavLink to={PATHS.PATIENTS.PRESCRIPTIONS} onClick={handleProtectedNav}>Đơn thuốc</NavLink>
-        <NavLink to={PATHS.PATIENTS.NOTIFICATIONS} onClick={handleProtectedNav}>Thông báo</NavLink>
-        <NavLink to={PATHS.PATIENTS.CONTACT} onClick={handleProtectedNav}>Liên hệ</NavLink>
-      </nav>
+    <nav className="flex gap-6">
+      <NavLink
+        to={PATHS.PATIENTS.HOME}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Trang chủ
+      </NavLink>
 
+
+      <NavLink
+        to={PATHS.PATIENTS.PROFILE}
+        onClick={handleProtectedNav}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Hồ sơ cá nhân
+      </NavLink>
+
+
+      <NavLink
+        to={PATHS.PATIENTS.APPOINTMENTS}
+        onClick={handleProtectedNav}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Lịch hẹn
+      </NavLink>
+
+
+      <NavLink
+        to={PATHS.PATIENTS.HISTORY}
+        onClick={handleProtectedNav}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Lịch sử khám
+      </NavLink>
+
+
+      <NavLink
+        to={PATHS.PATIENTS.PRESCRIPTIONS}
+        onClick={handleProtectedNav}
+       className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Đơn thuốc
+      </NavLink>
+
+
+      <NavLink
+        to={PATHS.PATIENTS.NOTIFICATIONS}
+        onClick={handleProtectedNav}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Thông báo
+      </NavLink>
+
+
+      <NavLink
+        to={PATHS.PATIENTS.CONTACT}
+        onClick={handleProtectedNav}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-colors"
+            : "hover:text-blue-700 transition-colors"
+        }
+      >
+        Liên hệ
+      </NavLink>
+
+      
+    </nav>
       {/* User Area */}
       <div className="relative flex items-center gap-4">
         {username ? (
@@ -68,7 +148,7 @@ export default function Header() {
                 <img src={userAvatar} alt="User Avatar" className="w-full h-full object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-blue-600 text-white font-bold">
-                  {username.charAt(0).toUpperCase()}
+                  {username.charAt(0).toUpperCase() + username.charAt(1).toUpperCase()}
                 </div>
               )}
             </button>
@@ -86,7 +166,7 @@ export default function Header() {
             )}
           </div>
         ) : (
-          <Link to={PATHS.LOGIN}>
+          <Link to={PATHS.AUTH.LOGIN}>
             <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Đăng nhập</button>
           </Link>
         )}

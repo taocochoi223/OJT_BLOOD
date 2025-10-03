@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import authService from "../../services/authService.ts";
-import PATH from "../../routes/paths";
-import AuthLayout from "./AuthLayout";
+import PATH from "../../routes/paths.ts";
+import AuthLayout from "./AuthLayout.tsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default function Login() {
         alert("Đăng nhập thành công!");
         navigate(PATH.ADMINS.HOME);
       } else {
-        navigate(PATH.AUTH.UNAUTHORIZED);
+        navigate(PATH.PATIENTS.HOME);
       }
 
     } catch (err) {
