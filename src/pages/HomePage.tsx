@@ -328,8 +328,7 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full mt-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all duration-200">
-                    
+                  <button className="w-full mt-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all duration-200">           
                     Đặt lịch ngay
                   </button>
                 </div>
